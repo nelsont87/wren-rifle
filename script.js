@@ -16,56 +16,55 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 // Ask if the user is ready to play
-$('#button').append('<p> Are you ready to rescue our puppies? </p>');
-$('#yes').click(function(){
-  
+$('#button').append('<p>Are you ready to take the adventure and rescue our puppies?</p>');
+$('#yes').click(function() {
+  $('#inputLocation').text("Please type in a location you'd like to go to.");
 });
+
 $('#no').click(function() {
-  $('#nextTime').append('<p> Come back when you are ready! </p>')
+  $('#nextTime').text('Come back when you are ready!');
 });
 
+$('#icon').click(function() {
+  var userChoice = prompt("Guess the size of the puppy! (s/m/l)");
+  var computerChoice = Math.random();
+  if (computerChoice < 0.34) {
+    computerChoice = "s";
+  } else if(computerChoice <= 0.67) {
+    computerChoice = "m";
+  } else {
+    computerChoice = "l";
+  } 
+  console.log("Computer: " + computerChoice);
 
-
-
-// var userChoice = prompt("Do you choose rock, paper or scissors?");
-// var computerChoice = Math.random();
-// if (computerChoice < 0.34) {
-//   computerChoice = "rock";
-// } else if(computerChoice <= 0.67) {
-//   computerChoice = "paper";
-// } else {
-//   computerChoice = "scissors";
-// } console.log("Computer: " + computerChoice);
-
-// var compare=function(choice1,choice2) {
-//     if (choice1===choice2) {
-//         return"The result is a tie!";
-//     }
-//     else if (choice1==="rock") {
-//         if (choice2==="scissors") {
-//             return"rock wins";
-//         }else {
-//             return"paper wins";
-//         }
-//     }
-//     else if (choice1==="paper") {
-//         if (choice2==="rock") {
-//             return"paper wins";
-//         } else {
-//             return"scissors wins";
-//         }
-//     }
-//     else {
-//         if (choice2==="rock") {
-//             return"rock wins";
-//         } else {
-//             return"scissors wins";
-//         }
-//     }
-// }
-// compare(userChoice,computerChoice)
-
-
+  var compare=function(choice1,choice2) {
+      if (choice1===choice2) {
+          return"The result is a tie!";
+      }
+      else if (choice1==="s") {
+          if (choice2==="l") {
+              return"s wins";
+          }else {
+              return"m wins";
+          }
+      }
+      else if (choice1==="m") {
+          if (choice2==="s") {
+              return"m wins";
+          } else {
+              return"l wins";
+          }
+      }
+      else {
+          if (choice2==="s") {
+              return"s wins";
+          } else {
+              return"l wins";
+          }
+      }
+  }
+  compare(userChoice,computerChoice)
+})
 
 
 
@@ -127,43 +126,62 @@ function initAutocomplete() {
       } else {
         bounds.extend(place.geometry.location);     
     }
+
+
+    	//creating the icon that will be displayed
     	function Platform(pos, wid, hei){
-  this.draw = function(ctx){
-    ctx.strokeRect(pos.x+.5, pos.y+.5, 20, 20);
-  };
-}
-
-var can = document.getElementById("can"),
-    ctx = can.getContext('2d'),
-    wid = can.width,
-    hei = can.height,
-    numPlatforms = 14,
-    platWid = 20,
-    platHei = 20,
-    platforms = [],
-    hash = {};
-
-for(var i = 0; i < numPlatforms; i++){
-  var posX = Math.floor(Math.random()*(wid-platWid)/platWid)*platWid,
-    posY = Math.floor(Math.random()*(hei-platHei)/platHei)*platHei;
-  
-  while (hash[posX + 'x' + posY]){
-    posX = Math.floor(Math.random()*wid/platWid)*platWid;
-    posY = Math.floor(Math.random()*hei/platHei)*platHei;
+  			this.draw = function(ctx){
+  				var dogImg= new Image();
+  				dogImg.src="http://classroomclipart.com/images/gallery/Clipart/Animals/Dog_Clipart/dog_30.jpg"
+    		dogImg.onload=function(){
+    		ctx.drawImage(dogImg, pos.x+.5, pos.y+.5, 50, 50);
+  		};
+  		};
+		};
+		//creating random boxes on the canvas
+		var can = document.getElementById("can"),
+		    ctx = can.getContext('2d'),
+		    wid = can.width,
+		    hei = can.height,
+		    numPlatforms = 5,
+		    platWid = 50,
+		    platHei = 50,
+		    platforms = [],
+		    hash = {};
+		    ctx.clearRect(0,0,500, 500);
+      //providing random x,y coordinates
+  for(var i = 0; i < numPlatforms; i++){
+    var posX = Math.floor(Math.random()*(wid-platWid)/platWid)*platWid,
+      posY = Math.floor(Math.random()*(hei-platHei)/platHei)*platHei;
+//ensuring the icons do not overlap
+    while (hash[posX + 'x' + posY]){
+      posX = Math.floor(Math.random()*wid/platWid)*platWid;
+      posY = Math.floor(Math.random()*hei/platHei)*platHei;
+    }
+    
+    hash[posX + 'x' + posY] = 1; 
+    platforms.push(new Platform({x:posX, y:posY}, platWid, platHei));
   }
-  
-  hash[posX + 'x' + posY] = 1; 
-  platforms.push(new Platform({x:posX, y:posY}, platWid, platHei));
-}
 
-for(var i = 0; i < platforms.length; i++){
-  platforms[i].draw(ctx);
-}
-
-    });
-    map.fitBounds(bounds);
-    });
+    for(var i = 0; i < platforms.length; i++){
+      platforms[i].draw(ctx);
+    }
+	    });
+	    map.fitBounds(bounds);
+	});
 };
 
+
+// <p hidden>This paragraph should be hidden.</p>
+
+// $("button").click(function(){
+//     $("div").hide({
+//         height: 'hide'
+//     });
+// }); 
+
+// $(selector).hide(speed,callback);
+
+// $(selector).show(speed,callback);
 
 

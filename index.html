@@ -41,13 +41,17 @@ parameter when you first load the API. For example: -->
 <body>
 
 	<div id='button'></div>
-		<span><button id='yes'>Yes, let's do it!</button></span>
-		<span><button id='no'>Let me think more about it...</button></span>
+		<span><button id='yes' class='myButton'>Yes, let's do it!</button></span>
+		<span><button id='no' class='myButton'>Let me think more about it...</button></span>
+	<button id='icon'>Would you like to try your luck?</button>
 	<div id='nextTime'></div>
+	<div id='inputLocation'></div>
 
+	
 	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 	<div id="map"></div>
 	<canvas width="500" height="500" id="can"></canvas>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0fGTntR5RWX0PhHkh6JVroAsWuuaYLRM&libraries=places&callback=initAutocomplete"
          async defer></script>
 <script type="text/javascript" src='script.js'></script>
