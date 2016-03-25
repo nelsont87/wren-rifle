@@ -18,54 +18,23 @@
 // Ask if the user is ready to play
 $('#button').append('<p>Are you ready to take the adventure and rescue our puppies?</p>');
 $('#yes').click(function() {
-  $('#inputLocation').text("Please type in a location you'd like to go to.");
+  $('#inputLocation').text("Please type in a location and click on the puppy you would like to rescue.");
 });
 
 $('#no').click(function() {
-  $('#nextTime').text('Come back when you are ready!');
+  alert('Come back when you are ready!');
 });
 
-$('#icon').click(function() {
-  var userChoice = prompt("Guess the size of the puppy! (s/m/l)");
-  var computerChoice = Math.random();
-  if (computerChoice < 0.34) {
-    computerChoice = "s";
-  } else if(computerChoice <= 0.67) {
-    computerChoice = "m";
-  } else {
-    computerChoice = "l";
-  } 
-  console.log("Computer: " + computerChoice);
-
-  var compare=function(choice1,choice2) {
-      if (choice1===choice2) {
-          return"The result is a tie!";
-      }
-      else if (choice1==="s") {
-          if (choice2==="l") {
-              return"s wins";
-          }else {
-              return"m wins";
-          }
-      }
-      else if (choice1==="m") {
-          if (choice2==="s") {
-              return"m wins";
-          } else {
-              return"l wins";
-          }
-      }
-      else {
-          if (choice2==="s") {
-              return"s wins";
-          } else {
-              return"l wins";
-          }
-      }
-  }
-  compare(userChoice,computerChoice)
-})
-
+// $('#icon').click(function() {
+//   var userChoice = prompt("In order to rescue the puppy, we have to flip a coin, head or tale? (h/t)");
+//   // $('input:textbox').val('h/t');
+//   var computerChoice = Math.random();
+//   if (computerChoice < 0.51) {
+//     $('#game').text('You guessed it right! Congradulations! You have successfully rescued the puppy! Here is a drink as a reward!')
+//   } else {
+//     $('#game').text('Oops! The puppy has been rescued by someone else, pick another puppy and try again!');
+//   }
+// })
 
 
 function initAutocomplete() {
@@ -133,7 +102,7 @@ function initAutocomplete() {
     	function Platform(pos, wid, hei){
   			this.draw = function(ctx){
   				var dogIcon= document.getElementById("dogImg");
-    		ctx.drawImage(dogIcon, pos.x+.5, pos.y+.5, 23, 23);
+    		ctx.drawImage(dogIcon, pos.x+.5, pos.y+.5, 25, 22);
 
   		};
 		};
@@ -145,8 +114,8 @@ function initAutocomplete() {
 		    wid = can.width,
 		    hei = can.height,
 		    numPlatforms = 5,
-		    platWid = 23,
-		    platHei = 23,
+		    platWid = 25,
+		    platHei = 22,
 		    platforms = [],
 		    hash = {};
 		    ctx.clearRect(0,0,500, 500);
@@ -166,11 +135,19 @@ function initAutocomplete() {
 
     for(var i = 0; i < platforms.length; i++){
       platforms[i].draw(ctx);
-      can.addEventListener('click', function(e){
-      	console.log("inside canvas");
+    }
+    can.addEventListener('click', function(e){
+      console.log("Why are you looking in the console?");
+      var userChoice = prompt("In order to rescue the puppy, we have to flip a coin, head or tale? (h/t)");
+      var computerChoice = Math.random();
+      if (computerChoice < 0.51) {
+        $('#game').text('You guessed it right! Congradulations! You have successfully rescued the puppy! Here is a drink as a reward!')
+      } else {
+        $('#game').text('Oops! The puppy has been rescued by someone else, pick another puppy and try again!');
+      }
       });
 
-	 }
+   
 
 	    });
 	    map.fitBounds(bounds);

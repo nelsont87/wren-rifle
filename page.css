@@ -1,37 +1,10 @@
-/*	body {
-	background-color: white;
-	color: white;
-	}
-
-	h1 {
-	border: 1px solid purple;
-	}
-
-	h2 {
-    border: 10px solid orange;
-    padding: 10px;
-    margin: 25px;
-	color: red;
-	background-color: blue;
-	font-size: 2em;
-	}
-
-	p {
-	border: 1px solid purple;
-	background-color: orange;
-	font-family: Courier;
-	}
-	
-	span {
-    border: 1px solid purple;
-	color: yellow
-	}*/
 
       
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
+      background-image: url(http://farm5.staticflickr.com/4122/4860394781_969af6249a.jpg);
     }
     #map {
       margin-top: 60px;
@@ -132,5 +105,19 @@
     top:1px;
   }
 
-
+  .rainbow {
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  
+  #button {
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 
