@@ -101,6 +101,7 @@ function initAutocomplete() {
     });
     markers = [];
 
+
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
@@ -131,21 +132,21 @@ function initAutocomplete() {
     	//creating the icon that will be displayed
     	function Platform(pos, wid, hei){
   			this.draw = function(ctx){
-  				var dogImg= new Image();
-  				dogImg.src="http://classroomclipart.com/images/gallery/Clipart/Animals/Dog_Clipart/dog_30.jpg"
-    		dogImg.onload=function(){
-    		ctx.drawImage(dogImg, pos.x+.5, pos.y+.5, 50, 50);
-  		};
+  				var dogIcon= document.getElementById("dogImg");
+    		ctx.drawImage(dogIcon, pos.x+.5, pos.y+.5, 23, 23);
+
   		};
 		};
+
+
 		//creating random boxes on the canvas
 		var can = document.getElementById("can"),
 		    ctx = can.getContext('2d'),
 		    wid = can.width,
 		    hei = can.height,
 		    numPlatforms = 5,
-		    platWid = 50,
-		    platHei = 50,
+		    platWid = 23,
+		    platHei = 23,
 		    platforms = [],
 		    hash = {};
 		    ctx.clearRect(0,0,500, 500);
@@ -165,7 +166,12 @@ function initAutocomplete() {
 
     for(var i = 0; i < platforms.length; i++){
       platforms[i].draw(ctx);
-    }
+      can.addEventListener('click', function(e){
+      	console.log("inside canvas");
+      });
+
+	 }
+
 	    });
 	    map.fitBounds(bounds);
 	});
